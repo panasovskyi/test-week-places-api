@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^25.7.0",
+    "axios": "^1.16.0",
+    "dotenv-webpack": "^9.0.0",
+    "ts-loader": "^9.5.7",
+    "typescript": "^6.0.3",
+    "webpack": "^5.106.2",
+    "webpack-cli": "^7.0.2",
+    "webpack-dev-server": "^5.2.4"
+  }
+}
