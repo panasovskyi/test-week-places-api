@@ -1,10 +1,11 @@
-import { getNearbyPlaces } from './handlers/getNearbyPlaces';
+import { App } from "./ui/App";
+import { SearchPage } from "./ui/pages/SearchPage";
+import { initSearchPage } from './controllers/searchController';
 
-const button = document.querySelector(".button");
+const root = document.getElementById("root");
 
-button?.addEventListener("click", () => {
-  const lat = (document.getElementById("lat") as HTMLInputElement).value;
-  const lng = (document.getElementById("lng") as HTMLInputElement).value;
+if (root) {
+  root.innerHTML = App(SearchPage());
 
-  getNearbyPlaces(lat, lng);
-});
+  initSearchPage();
+}

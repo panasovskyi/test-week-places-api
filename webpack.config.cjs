@@ -24,6 +24,7 @@ module.exports = {
     static: "./",
     port: 3000,
     open: true,
+    allowedHosts: "all",
     proxy: [
       {
         context: ["/api"],
