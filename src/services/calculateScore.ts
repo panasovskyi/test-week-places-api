@@ -25,14 +25,14 @@ export const calculateScore = (place: Location): number => {
   const timeFactor = getTimeFactor(place.minutesUntilClose);
   const distFactor = getDistFactor(place.distance);
   const openFactor = place.isOpen ? 1 : 0;
-  const socialProof = getSocialProof(place.totalReviews);
+  const socialProofFactor = getSocialProof(place.totalReviews);
 
   return (
-    socialProof * WEIGHTS.SOCIAL_PROOF +
+    socialProofFactor * WEIGHTS.SOCIAL_PROOF +
     timeFactor * WEIGHTS.TIME_UNTIL_CLOSE +
     distFactor * WEIGHTS.DISTANCE +
     openFactor * WEIGHTS.OPEN_STATUS +
     place.popularity * WEIGHTS.POPULARITY +
-    (place.rating / 10) * WEIGHTS.RATING
+    place.rating * WEIGHTS.RATING
   );
 };

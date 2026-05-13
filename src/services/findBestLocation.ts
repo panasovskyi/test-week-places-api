@@ -6,7 +6,9 @@ export const findBestLocation = (places: Location[]): Location | null => {
   let maxScore = -1;
 
   for (const place of places) {
-    if (place.isClosed) continue;
+    if (place.isClosed) {
+      continue;
+    };
 
     const score = calculateScore(place);
 

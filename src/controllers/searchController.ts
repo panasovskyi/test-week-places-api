@@ -39,7 +39,7 @@ const initSearch = () => {
       handleSearch(lat, lng);
     } else {
       alert(
-        "Некоректний формат координат! \nШирота: -90...90, Довгота: -180...180",
+        "Wrong format! \nLatitude: -90...90, Longitude: -180...180 or BOTH empty",
       );
     }
   });

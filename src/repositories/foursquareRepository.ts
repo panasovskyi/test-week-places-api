@@ -17,12 +17,9 @@ const mapToLocation = (place: Place): Location => ({
 });
 
 export const foursquareRepository = {
-  async getPlaces(
-    lat: string,
-    lng: string,
-    options?: GetPlacesOptions,
-  ): Promise<Location[]> {
-    const places = await foursquareService.getPlaces(lat, lng, options);
+  async getPlaces(options: GetPlacesOptions = {}): Promise<Location[]> {
+    const places = await foursquareService.getPlaces(options);
+
     return places.map(mapToLocation);
   },
 };

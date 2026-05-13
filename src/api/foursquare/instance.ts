@@ -15,3 +15,14 @@ export const apiFoursquare = axios.create({
     "X-Places-Api-Version": "2025-06-17",
   },
 });
+
+apiFoursquare.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const message = axios.isAxiosError(error)
+      ? `${error.message}. ${error.response?.statusText}`
+      : "Unknown error";
+
+    return Promise.reject(new Error(message));
+  },
+);

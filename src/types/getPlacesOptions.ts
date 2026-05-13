@@ -1,4 +1,5 @@
 export interface GetPlacesOptions {
+  ll?: string;
   query?: string;
   radius?: number;
   fsq_category_ids?: string;
