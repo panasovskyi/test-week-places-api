@@ -1,13 +1,16 @@
 import { apiFoursquare } from "./instance";
-import type { Place, FoursquareSearchResponse } from "../../types/place";
-import type { GetPlacesOptions } from "../../types/getPlacesOptions";
+import type {
+  FoursquarePlace,
+  FoursquareSearchResponse,
+} from "../../types/place.foursquare";
+import type { GetPlacesParams } from "../../types/params.foursquare";
 
 export const foursquareService = {
-  async getPlaces(options: GetPlacesOptions = {}): Promise<Place[]> {
+  async getPlaces(params: GetPlacesParams = {}): Promise<FoursquarePlace[]> {
     const res = await apiFoursquare.get<FoursquareSearchResponse>(
       "places/search",
       {
-        params: options,
+        params,
       },
     );
 

@@ -1,15 +1,11 @@
 import type { Location } from "../types/location";
-import { calculateScore } from './calculateScore';
+import { calculateScore } from "./calculateScore";
 
 export const findBestLocation = (places: Location[]): Location | null => {
   let bestPlace: Location | null = null;
   let maxScore = -1;
 
   for (const place of places) {
-    if (place.isClosed) {
-      continue;
-    };
-
     const score = calculateScore(place);
 
     if (score > maxScore) {

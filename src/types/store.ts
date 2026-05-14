@@ -1,5 +1,4 @@
-import type { Location } from './location';
-import type { Place } from './place';
+import type { Location } from "./location";
 
 export interface LocationState {
   data: Location | null;

@@ -1,11 +1,11 @@
-export interface Place {
+export interface FoursquarePlace {
   fsq_place_id: string;
   name: string;
   latitude: number;
   longitude: number;
   distance: number;
-  categories: Category[];
-  chains: Chain[];
+  categories: FoursquareCategory[];
+  chains: FoursquareChain[];
   location: Location;
 
   description?: string;
@@ -17,41 +17,41 @@ export interface Place {
   rating?: number;
   popularity?: number;
 
-  hours?: Hours;
-  hours_popular?: HourRange[];
+  hours?: FoursquareHours;
+  hours_popular?: FoursquareHourRange[];
   date_created: string;
   date_refreshed: string;
   date_closed?: string;
 
-  photos: Photo[];
-  tips: Tip[];
-  social_media?: SocialMedia;
-  stats?: Stats;
+  photos: FoursquarePhoto[];
+  tips: FoursquareTip[];
+  social_media?: FoursquareSocialMedia;
+  stats?: FoursquareStats;
 
-  attributes?: PlaceAttributes;
+  attributes?: FoursquarePlaceAttributes;
 
-  related_places?: RelatedPlaces;
+  related_places?: FoursquareRelatedPlaces;
 
-  place_actions?: PlaceAction[];
+  place_actions?: FoursquarePlaceAction[];
   veracity_rating?: Record<string, any>;
 }
 
-interface Category {
+interface FoursquareCategory {
   fsq_category_id: string;
   name: string;
   short_name: string;
   plural_name: string;
-  icon: Icon;
+  icon: FoursquareIcon;
 }
 
-interface Icon {
+interface FoursquareIcon {
   prefix: string;
   suffix: string;
   width?: number;
   height?: number;
 }
 
-interface Location {
+interface FoursquareLocation {
   address?: string;
   formatted_address: string;
   locality: string;
@@ -62,21 +62,21 @@ interface Location {
   admin_region?: string;
 }
 
-export interface Hours {
+export interface FoursquareHours {
   display: string;
   is_local_holiday: boolean;
   open_now: boolean;
-  regular: HourRange[];
+  regular: FoursquareHourRange[];
 }
 
-interface HourRange {
+interface FoursquareHourRange {
   day: number;
   open: string;
   close: string;
   is_overnight?: boolean;
 }
 
-interface Photo {
+interface FoursquarePhoto {
   fsq_photo_id: string;
   created_at: string;
   prefix: string;
@@ -86,7 +86,7 @@ interface Photo {
   classifications?: string[];
 }
 
-interface Tip {
+interface FoursquareTip {
   fsq_tip_id: string;
   created_at: string;
   text: string;
@@ -96,7 +96,7 @@ interface Tip {
   disagree_count: number;
 }
 
-interface PlaceAttributes {
+interface FoursquarePlaceAttributes {
   restroom?: boolean;
   outdoor_seating?: boolean;
   atm?: boolean;
@@ -107,36 +107,36 @@ interface PlaceAttributes {
   takes_credit_card?: boolean;
 }
 
-interface Stats {
+interface FoursquareStats {
   total_photos: number;
   total_ratings: number;
   total_tips: number;
 }
 
-interface SocialMedia {
+interface FoursquareSocialMedia {
   facebook_id?: string;
   instagram?: string;
   twitter?: string;
 }
 
-interface RelatedPlaces {
-  parent?: Partial<Place>;
-  children?: Partial<Place>[];
+interface FoursquareRelatedPlaces {
+  parent?: Partial<FoursquarePlace>;
+  children?: Partial<FoursquarePlace>[];
 }
 
-interface Chain {
+interface FoursquareChain {
   fsq_chain_id: string;
   name: string;
-  logo?: Icon;
+  logo?: FoursquareIcon;
 }
 
-interface PlaceAction {
+interface FoursquarePlaceAction {
   action: string;
   url: string;
 }
 
 export interface FoursquareSearchResponse {
-  results: Place[];
+  results: FoursquarePlace[];
   context: {
     geo_bounds: {
       circle: {

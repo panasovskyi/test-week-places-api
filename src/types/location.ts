@@ -1,10 +1,26 @@
 export interface Location {
   name: string;
   distance: number;
-  isOpen: boolean;
-  minutesUntilClose: number | null;
+  isPermanentlyClosed: boolean;
+  dateClosed: string | null;
+  hours?: LocationHours;
+
   rating: number;
+  maxRating: number;
+totalRatings: number;
+  totalTips: number;
   popularity: number;
-  totalReviews: number;
-  isClosed: boolean;
+}
+
+export interface LocationRegularHours {
+  day: number;
+  open: string;
+  close: string;
+  isOvernight?: boolean;
+}
+
+export interface LocationHours {
+  isOpenNow: boolean;
+  regular: LocationRegularHours[];
+  displayText?: string;
 }

@@ -1,6 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
-const BASE_URL = '/api';
+const BASE_URL = "/api";
+//const BASE_URL = "https://places-api.foursquare.com";
 const API_KEY = process.env.PLACES_API_KEY;
 
 if (!API_KEY) {
@@ -19,10 +20,26 @@ export const apiFoursquare = axios.create({
 apiFoursquare.interceptors.response.use(
   (response) => response,
   (error) => {
-    const message = axios.isAxiosError(error)
-      ? `${error.message}. ${error.response?.statusText}`
-      : "Unknown error";
+    let errorMessage = "An unexpected error occurred";
 
-    return Promise.reject(new Error(message));
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status;
+      const data = error.response?.data;
+
+      errorMessage =
+        (status && HTTP_ERRORS[status]) || data?.message || error.message;
+    } else if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+
+    return Promise.reject(new Error(errorMessage));
   },
 );
+
+const HTTP_ERRORS: Record<number, string> = {
+  401: "Please check your permissions.",
+  403: "Access forbidden.",
+  404: "Resource not found.",
+  429: "Too many requests. Please try again later.",
+  500: "Server error. Please try again later.",
+};

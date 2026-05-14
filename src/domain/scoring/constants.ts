@@ -1,0 +1,7 @@
+export const WEIGHTS = {
+  DISTANCE: 0.65,
+  TIME_UNTIL_CLOSE: 0.14,
+  POPULARITY: 0.08,
+  RATING: 0.08,
+  SOCIAL_PROOF: 0.05,
+};

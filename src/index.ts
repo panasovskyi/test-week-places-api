@@ -1,11 +1,28 @@
-import { App } from "./ui/App";
-import { SearchPage } from "./ui/pages/SearchPage";
-import { initSearchPage } from './controllers/searchController';
+import { getBestLocation } from './services/getBestLocation';
+import { validateCoords } from "./utils/validateCoords";
+import { searchView } from "./view/searchView";
 
-const root = document.getElementById("root");
+const view = searchView("root");
 
-if (root) {
-  root.innerHTML = App(SearchPage());
+view.onSearch(async () => {
+  const { lat, lng } = view.getInputs();
+  const validation = validateCoords(lat, lng);
 
-  initSearchPage();
-}
+  if (!validation.success) {
+    view.showError(validation.error);
+
+    return;
+  }
+
+  view.showLoader();
+
+  const result = await getBestLocation(lat, lng);
+
+  if (!result.success) {
+    view.showError(result.error);
+
+    return;
+  }
+
+  view.showPlace(result.data);
+});

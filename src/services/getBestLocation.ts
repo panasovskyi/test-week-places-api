@@ -1,20 +1,23 @@
-import { findBestLocation } from "./findBestLocation";
 import type { Location } from "../types/location";
-import type { Result } from '../types/result';
-import { foursquareRepository } from '../repositories/foursquareRepository';
-import type { GetPlacesOptions } from '../types/getPlacesOptions';
+import type { Result } from "../types/result";
+import { foursquareRepository } from "../api/foursquare/repo";
+import { findBestLocation } from "../domain/findBestLocation";
+
+/*
+getOptimalLocation 
+getOptimalPlace
+getCurrentLocation ---
+getCurrentPlace
+getLocation
+getPlace 
+*/
 
 export const getBestLocation = async (
   lat: string,
   lng: string,
 ): Promise<Result<Location>> => {
   try {
-    const options: GetPlacesOptions = {
-      ...(lat && lng ? { ll: `${lat},${lng}` } : {}),
-      limit: 10,
-    };
-
-    const places = await foursquareRepository.getPlaces(options);
+    const places = await foursquareRepository.getPlaces(lat, lng);
 
     if (places.length === 0) {
       return { success: false, error: "No places found" };

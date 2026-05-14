@@ -1,4 +1,4 @@
-export interface GetPlacesOptions {
+export interface GetPlacesParams {
   ll?: string;
   query?: string;
   radius?: number;
