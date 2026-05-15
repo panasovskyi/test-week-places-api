@@ -1,29 +1,29 @@
-import { getBestLocation } from './services/getBestLocation';
+import { getBestLocation } from "./services/getBestLocation";
 import { validateCoords } from "./utils/validateCoords";
-import { searchView } from "./view/searchView";
+import { SearchPage } from "./view/SearchPage";
 
-const view = searchView("root");
+const searchPage = new SearchPage();
 
+document.getElementById("root")!.append(searchPage.render());
 
-view.onSearch(async () => {
-  const { lat, lng } = view.getInputs();
-  const validation = validateCoords(lat, lng);
+searchPage.onClick(async () => {
+  const validation = validateCoords(searchPage.getInputValue());
 
   if (!validation.success) {
-    view.showError(validation.error);
+    searchPage.showError(validation.error);
 
     return;
   }
 
-  view.showLoader();
+  searchPage.showLoader();
 
-  const result = await getBestLocation(lat, lng);
+  const result = await getBestLocation(validation.data);
 
   if (!result.success) {
-    view.showError(result.error);
+    searchPage.showError(result.error);
 
     return;
   }
 
-  view.showPlace(result.data);
+  searchPage.showPlace(result.data);
 });

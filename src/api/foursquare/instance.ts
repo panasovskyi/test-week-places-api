@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const BASE_URL = "/api";
-//const BASE_URL = "https://places-api.foursquare.com";
 const API_KEY = process.env.PLACES_API_KEY;
 
 if (!API_KEY) {

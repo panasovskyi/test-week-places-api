@@ -1,12 +1,13 @@
 import { foursquareService } from ".";
 import type { GetPlacesParams } from "../../types/params.foursquare";
 import type { Location } from "../../types/location";
+import type { Coords } from "../../types/coords";
 import { mapToLocation } from "./mapper";
 
 export const foursquareRepository = {
-  async getPlaces(lat: string, lng: string): Promise<Location[]> {
+  async getPlaces(coords: Coords): Promise<Location[]> {
     const params: GetPlacesParams = {
-      ...(lat && lng ? { ll: `${lat},${lng}` } : {}),
+      ll: `${coords.lat},${coords.lng}`,
       limit: 10,
     };
 

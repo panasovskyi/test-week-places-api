@@ -1,7 +1,9 @@
 import { Coords } from '../types/coords';
 import { Result } from '../types/result';
 
-export const validateCoords = (lat: string, lng: string): Result<Coords> => {
+export const validateCoords = (coords: Coords): Result<Coords> => {
+  const { lat, lng } = coords;
+
   if (lat === "" || lng === "") {
     return { success: false, error: "Fields cannot be empty." };
   }

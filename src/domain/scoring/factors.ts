@@ -24,5 +24,6 @@ export const getTimeFactor = (
   if (minutesUntilClose === null) return 0.5;
   if (minutesUntilClose < 30) return 0.2;
   if (minutesUntilClose < 60) return 0.6;
+
   return 1;
 };
