@@ -4,6 +4,7 @@ import { searchView } from "./view/searchView";
 
 const view = searchView("root");
 
+
 view.onSearch(async () => {
   const { lat, lng } = view.getInputs();
   const validation = validateCoords(lat, lng);
